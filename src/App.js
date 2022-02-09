@@ -58,18 +58,11 @@ class App extends React.Component {
                             (this.state.isEditorExpanded ? "expanded" : "")
                         }
                     >
-                        <div className="sub-title">
-                            <h2>Editor</h2>
-                            <button onClick={this.handleEditorExpansion}>
-                                <i
-                                    className={
-                                        this.state.isEditorExpanded
-                                            ? "fas fa-times"
-                                            : "fas fa-expand-alt"
-                                    }
-                                ></i>
-                            </button>
-                        </div>
+                        <TitleBar
+                            title="Editor"
+                            handleExpansionIcon={this.state.isEditorExpanded}
+                            onClick={this.handleEditorExpansion}
+                        />
                         <textarea
                             defaultValue={markdownPlaceholder}
                             id="editor"
@@ -83,18 +76,11 @@ class App extends React.Component {
                             (this.state.isEditorExpanded ? "hide" : "")
                         }
                     >
-                        <div className="sub-title">
-                            <h2>Previewer</h2>
-                            <button onClick={this.handlePreviewExpansion}>
-                                <i
-                                    className={
-                                        this.state.isPreviewExpanded
-                                            ? "fas fa-times"
-                                            : "fas fa-expand-alt"
-                                    }
-                                ></i>
-                            </button>
-                        </div>
+                        <TitleBar
+                            title="Previewer"
+                            handleExpansionIcon={this.state.isPreviewExpanded}
+                            onClick={this.handlePreviewExpansion}
+                        />
                         <div id="preview"></div>
                     </div>
                 </div>
@@ -112,6 +98,23 @@ class App extends React.Component {
         );
     }
 }
+
+const TitleBar = (props) => {
+    return (
+        <div className="sub-title">
+            <h2>{props.title}</h2>
+            <button onClick={props.onClick}>
+                <i
+                    className={
+                        props.handleExpansionIcon
+                            ? "fas fa-times"
+                            : "fas fa-expand-alt"
+                    }
+                ></i>
+            </button>
+        </div>
+    );
+};
 
 export default App;
 
